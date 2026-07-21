@@ -1,0 +1,32 @@
+1. Requested_Insights_Sales
+
+
+/*  1. Active Cities
+What cities have active members? Are there any cities listed in the city table with no active members?*/
+    
+SELECT 
+    city,
+    member_status
+FROM
+    grp_member
+WHERE member_status='Active'
+GROUP BY city;
+
+
+-- San Francisco, New York, Chicago,West New York, South San Francisco,North Chicago,Chicago Heights, East Chicago, and Chicago Ridge are the cities that have active members*/
+
+
+SELECT 
+    city, 
+    state
+FROM city
+WHERE
+    city NOT IN (SELECT 
+            city
+        FROM
+            grp_member
+        WHERE
+            member_status ='Active'
+        GROUP BY city);
+        
+-- New York Mills in the State of New York, New York Mills in the state of Minnesota, and Chicago Park in the state of California are cities with no active members.--
