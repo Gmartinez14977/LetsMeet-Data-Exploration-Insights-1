@@ -1,0 +1,2 @@
+ 
+In this initial phase, the objective was to understand the team’s requirements and deliver data-driven insights to address their needs. Two types of insights were developed during this stage: Insights generated from specific questions posed by the sales team, focusing on groups, members, and categories. Insights identified independently through exploratory data analysis of groups, members, and categories. This approach ensured both targeted analysis aligned with business needs and the discovery of additional patterns and opportunities within the data. 
