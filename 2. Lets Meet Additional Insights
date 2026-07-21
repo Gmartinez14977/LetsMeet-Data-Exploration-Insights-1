@@ -1,0 +1,63 @@
+II. Additional_Insights 
+
+
+-- 1. Groups 
+SELECT 
+    c.city,
+    c.state,
+    AVG(rating),
+    COUNT(*)
+    FROM grp AS g
+        JOIN city AS c ON g.city_id = c.city_id
+GROUP BY c.city
+ORDER BY  AVG (rating) DESC
+LIMIT 5;
+
+
+/* Which are the five cities that have the highest ratings? 
+North Chicago, Chicago Ridge, South San Francisco, West Chicago, and San Francisco are the 5 cities with the highest average rating.
+ San Francisco shows having the highest numbers of group members.*/
+
+
+-- 2. Events
+ /*What are the five events with an upcoming status that have the highest average number of "yes reservations? */
+
+
+SELECT DISTINCT
+    event_name,
+   AVG(yes_rsvp_count), 
+    event_status
+FROM event AS e
+JOIN grp AS g ON e.group_id = g.group_id
+WHERE event_status="upcoming"
+GROUP BY event_name
+ORDER BY e.yes_rsvp_count DESC
+LIMIT 5;
+
+
+ /*The  five events with the highest average number of  yes reservations include Friday Nights, SF Customer Success Meetup, Friday Night Drinks with International Travelers,NYREIA 17th Real Estate Investor Networking, and Performative Play.
+The status for these events is showing upcoming events which means we can still increase the number of members attending these meetups.*/
+
+
+-- 3. Category 
+/* What are the categories with the highest average number of members?*/
+
+
+SELECT DISTINCT
+    c.category_name, 
+    AVG(g.members)
+FROM category AS c
+JOIN grp AS g ON c.category_id = g.category_id
+    GROUP BY c.category_id
+HAVING AVG (g.members) > (SELECT 
+    AVG(members)
+FROM grp)
+ORDER BY AVG (g.members) DESC;
+
+
+/*Photography, Arts and Culture, Singles, Outdoors and Adventure and Socializing, Food and Drinks, Movie and film, Lifestyle, Tech, Language and ethnic Identity have the highest average number of members.*/
+
+
+-- 4. City 
+/* What is the state with the highest members count? how can the state be referenced in a column as the state with the highest number of members?*/
+
